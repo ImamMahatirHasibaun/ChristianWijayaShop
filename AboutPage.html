@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HCI Project</title>
+    <link rel="stylesheet" href="AboutPage.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lexend+Giga:wght@100..900&family=Lobster&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+        <nav class="navbar">
+            <a class="Logo">Christian<span>Wijayaㅤ</span></a>
+            
+            <div class="navbar-nav">
+                <a href="HomePage.html">Home</a>
+                <a href="ProductPage.html">Product</a>
+                <a href="EventPage.html">Event</a>
+                <a href="AboutPage.html">About</a>
+            </div>
+            
+            <div class="navbar-ekstra">
+                <div class="search-container">
+                    <input type="text" placeholder="Search..." />
+                    <a href="#"><img src="asset/search.svg" alt="" class="nav-search"></a>
+                </div>
+            </div>
+            
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+
+        <!-- Konten lainnya -->
+
+    <script>
+        // JavaScript untuk toggle menu di mobile
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navbarNav = document.querySelector('.navbar-nav');
+        
+        menuToggle.addEventListener('click', function() {
+            navbarNav.classList.toggle('active');
+        });
+        
+        // Menutup menu saat mengklik di luar menu
+        document.addEventListener('click', function(e) {
+            if (!menuToggle.contains(e.target) && !navbarNav.contains(e.target)) {
+                navbarNav.classList.remove('active');
+            }
+        });
+    </script>
+    </header>
+
+    <!-- isi about us nya -->
+    <div class="about-container">
+        <!-- Hero Section -->
+        <div class="hero-section">
+            <img data-aos="zoom-in" src="asset/companyimage.jpg" alt="Company Hero Image" class="hero-image">
+            <div class="hero-overlay">
+                <div class="hero-text">
+                    <h1>About Our Company</h1>
+                    <p>We are passionate about creating extraordinary experiences and delivering the best experience to our clients.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Story Section -->
+        <div class="content-section">
+            <img data-aos="zoom-in" src="asset/ourstoryimage.jpg" alt="Our Story" class="content-image">
+            <div class="content-text">
+                <h2>Our Story</h2>
+                <p>Christian Wijaya was founded with a vision to create fashion that transcends time while embracing modern sophistication. What began as a small atelier in Jakarta has blossomed into an internationally recognized luxury brand.
+                    Our journey is marked by an unwavering commitment to craftsmanship, using only the finest materials and working with skilled artisans who share our passion for perfection.</p>
+                <p>Today, Christian Wijaya continues to push boundaries in luxury fashion, balancing traditional techniques with innovative approaches to create pieces that are both contemporary and timeless.</p>
+            </div>
+        </div>
+
+        <!-- Stats Section -->
+        <div class="stats-section">
+            <div data-aos="fade-right" data-aos-delay="1" class="stat-item">
+                <div class="stat-number">500+</div>
+                <div class="stat-label">Happy Clients</div>
+            </div>
+            <div data-aos="fade-right" data-aos-delay="2" class="stat-item">
+                <div class="stat-number">150+</div>
+                <div class="stat-label">Projects Completed</div>
+            </div>
+            <div data-aos="fade-left" data-aos-delay="3" class="stat-item">
+                <div class="stat-number">50+</div>
+                <div class="stat-label">Team Members</div>
+            </div>
+            <div data-aos="fade-left" data-aos-delay="4" class="stat-item">
+                <div class="stat-number">10+</div>
+                <div class="stat-label">Years Experience</div>
+            </div>
+        </div>
+
+        <!-- Mission Section -->
+        <div class="content-section">
+            <div class="content-text">
+                <h2>Our Mission</h2>
+                <p>Our mission is to empower businesses through innovative solutions and exceptional service. We strive to create lasting relationships with our clients and deliver client satisfaction</p>
+                <p>With a focus on quality, innovation, and customer satisfaction, we work tirelessly to exceed expectations and help our clients get what they want.</p>
+            </div>
+            <img data-aos="zoom-in" data-aos-delay="500" src="asset/visimisiimage.jpg" alt="Our Mission" class="content-image">
+        </div>
+
+        <!-- Team Section -->
+        <div data-aos="fade-up"
+        data-aos-duration="3000" data-aos-delay="5s" class="team-section">
+            <h2>Meet Our Team</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <img src="asset/teamimage.jpg" alt="Team Member 1">
+                    <div class="team-info">
+                        <h3>Imam Mahatir Hasibuan</h3>
+                        <p>CEO & Founder</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <img src="asset/teamimage2.jpg" alt="Team Member 2">
+                    <div class="team-info">
+                        <h3>Ziyat Rafi</h3>
+                        <p>Creative Director</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <img src="asset/teamimage3.jpg" alt="Team Member 3">
+                    <div class="team-info">
+                        <h3>Duha Razaki</h3>
+                        <p>Lead Developer</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <img src="asset/teamimage4.jpg" alt="Team Member 4">
+                    <div class="team-info">
+                        <h3>Sarah Williams</h3>
+                        <p>Marketing Manager</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+<footer class="footer">
+    <div class="footer-container">
+        <!-- Brand Section -->
+        <div class="footer-section">
+            <h2 class="brand-name">Christian Wijaya</h2>
+            <p class="brand-description">
+                Luxury fashion house dedicated to timeless elegance and modern sophistication.
+            </p>
+        </div>
+        
+        <!-- Social Media Section -->
+        <div class="footer-section">
+            <h3 class="footer-title">Find Us On</h3>
+            <ul class="footer-links">
+                <li>
+                    <a href="#"><img src="asset/instagram.svg" alt="Instagram"></a>
+                </li>
+                <li>
+                    <a href="#"><img src="asset/facebook.svg" alt="Facebook"></a>
+                </li>
+                <li>
+                    <a href="#"><img src="asset/twitter-x.svg" alt="Twitter"></a>
+                </li>
+            </ul>
+        </div>
+        
+        <!-- Contact Section -->
+        <div class="footer-section">
+            <h3 class="footer-title">Contact</h3>
+            <div class="contact-info">
+                <span>Jakarta Design Tower</span>
+            </div>
+            <div class="contact-info">
+                <span>Sudirman Business District</span>
+            </div>
+            <div class="contact-info">
+                <span>Jakarta, Indonesia</span>
+            </div>
+            <div class="contact-info">
+                <span>contact@christianwijaya.com</span>
+            </div>
+            <div class="contact-info">
+                <span>+62 21 5678 9000</span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer-bottom">
+        <p>&copy; 2025 Christian Wijaya. All rights reserved.</p>
+    </div>
+</footer>
+
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+      </script>
+</body>
+
+</html>

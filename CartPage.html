@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HCI Project</title>
+    <link rel="stylesheet" href="CartPage.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lexend+Giga:wght@100..900&family=Lobster&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+      <!-- Navbar -->
+    <header>
+        <nav class="navbar">
+            <a class="Logo">Christian<span>Wijayaㅤ</span></a>
+            
+            <div class="navbar-nav">
+                <a href="HomePage.html">Home</a>
+                <a href="ProductPage.html">Product</a>
+                <a href="EventPage.html">Event</a>
+                <a href="AboutPage.html">About</a>
+            </div>
+            
+            <div class="navbar-ekstra">
+                <div class="search-container">
+                    <input type="text" placeholder="Search..." />
+                    <a href="#"><img src="asset/search.svg" alt="" class="nav-search"></a>
+                </div>
+                <a href="CartPage.html" class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </a>
+            </div>
+            
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="cart-container">
+            <h1 class="cart-title">Shopping Cart</h1>
+            
+            <div id="cart-content">
+                <!-- Cart items will be loaded here -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h2 class="brand-name">Christian Wijayaㅤ</h2>
+                <p class="brand-description">
+                    A luxury fashion house dedicated to timeless elegance and modern sophistication. Making customers more attractive, neat and graceful.
+                </p>
+            </div>
+    
+            <div class="footer-section">
+                <h3 class="footer-title">Find Us On</h3>
+                <ul class="footer-links">
+                    <li>
+                        <a href="#"><img src="asset/instagram.svg" alt="Instagram"></a>
+                    </li>
+                    <li>
+                        <a href="#"><img src="asset/facebook.svg" alt="Facebook"></a>
+                    </li>
+                    <li>
+                        <a href="#"><img src="asset/twitter-x.svg" alt="Twitter"></a>
+                    </li>
+                    <li>
+                        <a href="#"><img src="asset/tiktok.svg" alt="TikTok"></a>
+                    </li>
+                </ul>
+            </div>
+    
+            <div class="footer-section">
+                <h3 class="footer-title">Contact</h3>
+                <div class="contact-info">
+                    <span>Jakarta Design Tower</span>
+                </div>
+                <div class="contact-info">
+                    <span>Sudirman Business District</span>
+                </div>
+                <div class="contact-info">
+                    <span>Jakarta, Indonesia</span>
+                </div>
+                <div class="contact-info">
+                    <span>contact@christianwijaya.com</span>
+                </div>
+                <div class="contact-info">
+                    <span>+62 21 5678 9000</span>
+                </div>
+            </div>
+        </div>
+    
+        <div class="footer-container footer-bottom">
+            <p>&copy; 2025 Christian Wijaya. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Menu toggle for mobile
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navbarNav = document.querySelector('.navbar-nav');
+        
+        menuToggle.addEventListener('click', function() {
+            navbarNav.classList.toggle('active');
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!menuToggle.contains(e.target) && !navbarNav.contains(e.target)) {
+                navbarNav.classList.remove('active');
+            }
+        });
+
+        // Cart functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize cart if not exists
+            if (!localStorage.getItem('cart')) {
+                localStorage.setItem('cart', JSON.stringify([]));
+            }
+            
+            // Update cart count
+            updateCartCount();
+            
+            // Load cart items
+            loadCartItems();
+        });
+
+        // Function to update cart count
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('cart'));
+            const cartCount = document.querySelector('.cart-count');
+            
+            // Calculate total quantity
+            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+            
+            // Update cart count
+            cartCount.textContent = totalItems;
+        }
+
+        // Function to load cart items
+        function loadCartItems() {
+            const cart = JSON.parse(localStorage.getItem('cart'));
+            const cartContent = document.getElementById('cart-content');
+            
+            if (cart.length === 0) {
+                // Cart is empty
+                cartContent.innerHTML = `
+                    <div class="cart-empty">
+                        <p>Your cart is empty.</p>
+                        <a href="ProductPage.html" class="continue-shopping">Continue Shopping</a>
+                    </div>
+                `;
+                return;
+            }
+            
+            // Calculate cart total
+            const subtotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+            const shipping = subtotal > 0 ? 15000 : 0; // Free shipping over a certain amount could be implemented
+            const total = subtotal + shipping;
+            
+            // Generate HTML for cart items
+            let cartItemsHTML = `<div class="cart-items">`;
+            
+            cart.forEach(item => {
+                cartItemsHTML += `
+                    <div class="cart-item" data-id="${item.id}">
+                        <img src="${item.image}" alt="${item.name}" class="cart-item-image">
+                        <div class="cart-item-details">
+                            <h3 class="cart-item-name">${item.name}</h3>
+                            <p class="cart-item-price">Rp ${item.price.toLocaleString()}</p>
+                            <div class="cart-item-quantity">
+                                <button class="quantity-btn decrease" onclick="decreaseQuantity(${item.id})">-</button>
+                                <input type="number" class="quantity-input" value="${item.quantity}" min="1" onchange="updateQuantity(${item.id}, this.value)">
+                                <button class="quantity-btn increase" onclick="increaseQuantity(${item.id})">+</button>
+                                <span class="cart-item-remove" onclick="removeFromCart(${item.id})">
+                                    <i class="fas fa-trash"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            cartItemsHTML += `</div>`;
+            
+            // Add cart summary
+            cartItemsHTML += `
+                <div class="cart-summary">
+                    <div class="cart-summary-row">
+                        <span>Subtotal</span>
+                        <span>Rp ${subtotal.toLocaleString()}</span>
+                    </div>
+                    <div class="cart-summary-row">
+                        <span>Shipping</span>
+                        <span>Rp ${shipping.toLocaleString()}</span>
+                    </div>
+                    <div class="cart-summary-row cart-total">
+                        <span>Total</span>
+                        <span>Rp ${total.toLocaleString()}</span>
+                    </div>
+                    <button class="checkout-btn" onclick="checkout()">Proceed to Checkout</button>
+                    <a href="ProductPage.html" class="continue-shopping">Continue Shopping</a>
+                </div>
+            `;
+            
+            // Update cart content
+            cartContent.innerHTML = cartItemsHTML;
+        }
+
+        // Function to increase item quantity
+        function increaseQuantity(productId) {
+            let cart = JSON.parse(localStorage.getItem('cart'));
+            const index = cart.findIndex(item => parseInt(item.id) === productId);
+            
+            if (index > -1) {
+                cart[index].quantity += 1;
+                localStorage.setItem('cart', JSON.stringify(cart));
+                updateCartCount();
+                loadCartItems();
+            }
+        }
+
+        // Function to decrease item quantity
+        function decreaseQuantity(productId) {
+            let cart = JSON.parse(localStorage.getItem('cart'));
+            const index = cart.findIndex(item => parseInt(item.id) === productId);
+            
+            if (index > -1) {
+                if (cart[index].quantity > 1) {
+                    cart[index].quantity -= 1;
+                } else {
+                    cart.splice(index, 1);
+                }
+                
+                localStorage.setItem('cart', JSON.stringify(cart));
+                updateCartCount();
+                loadCartItems();
+            }
+        }
+
+        // Function to update item quantity
+        function updateQuantity(productId, quantity) {
+            let cart = JSON.parse(localStorage.getItem('cart'));
+            const index = cart.findIndex(item => parseInt(item.id) === productId);
+            
+            if (index > -1) {
+                cart[index].quantity = parseInt(quantity);
+                if (cart[index].quantity < 1) {
+                    cart[index].quantity = 1;
+                }
+                
+                localStorage.setItem('cart', JSON.stringify(cart));
+                updateCartCount();
+                loadCartItems();
+            }
+        }
+
+        // Function to remove item from cart
+        function removeFromCart(productId) {
+            let cart = JSON.parse(localStorage.getItem('cart'));
+            const index = cart.findIndex(item => parseInt(item.id) === productId);
+            
+            if (index > -1) {
+                cart.splice(index, 1);
+                localStorage.setItem('cart', JSON.stringify(cart));
+                updateCartCount();
+                loadCartItems();
+            }
+        }
+
+        // Function for checkout
+        function checkout() {
+            alert('Thank you for your order!');
+            // Clear cart after checkout
+            localStorage.setItem('cart', JSON.stringify([]));
+            updateCartCount();
+            loadCartItems();
+        }
+    </script>
+
+    
+    </body>
+    </html>
